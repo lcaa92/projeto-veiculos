@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProjectVeiculos.Models.veiculos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Novo Veículo", "Adicionar")
+</p>
+<div id="status"></div>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_veiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.placa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.proprietario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_tipo_veiculo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_veiculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.placa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.proprietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipos_veiculo.nome)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new {  id=item.id_veiculo  }) |
+            @Html.ActionLink("Visualizar", "visualizar", new {  id=item.id_veiculo }) |
+            @Html.ActionLink("Excluir", "Excluir", new {  id=item.id_veiculo  })
+        </td>
+    </tr>
+}
+
+</table>

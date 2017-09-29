@@ -1,0 +1,45 @@
+﻿@model ProjectVeiculos.Models.veiculos
+
+@{
+    ViewBag.Title = "Visualizar";
+}
+
+<h2>Visualizar</h2>
+
+<fieldset>
+    <legend>veiculos</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.id_veiculo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.id_veiculo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.placa)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.placa)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.proprietario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.proprietario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.id_tipo_veiculo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.id_tipo_veiculo)
+    </div>
+</fieldset>
+<hr />
+<legend>Fotos</legend>
+<p>
+    @Html.ActionLink("Editar", "editar", new {  id=Model.id_veiculo }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

@@ -1,0 +1,50 @@
+﻿@model ProjectVeiculos.Models.veiculos
+
+@{
+    ViewBag.Title = "Adicionar";
+}
+
+<h2>Adicionar</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>veiculos</legend>
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.placa)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.placa)
+            @Html.ValidationMessageFor(model => model.placa)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.proprietario)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.proprietario)
+            @Html.ValidationMessageFor(model => model.proprietario)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_tipo_veiculo)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("id_tipo_veiculo", String.Empty)
+            @Html.ValidationMessageFor(model => model.id_tipo_veiculo)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
