@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VeiculosDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VeiculosDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="fotos_veiculo">
           <Key>
             <PropertyRef Name="id_foto" />
@@ -12,6 +12,7 @@
           <Property Name="id_foto" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nome" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="id_veiculo" Type="bigint" Nullable="false" />
+          <Property Name="arquivo" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="tipos_veiculo">
           <Key>
@@ -66,8 +67,7 @@
             <End Role="veiculos" EntitySet="veiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VeiculosDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -79,6 +79,7 @@
           <Property Name="nome" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_veiculo" Type="Int64" Nullable="false" />
           <NavigationProperty Name="veiculos" Relationship="Self.fk_fotos_veiculos" FromRole="fotos_veiculo" ToRole="veiculos" />
+          <Property Name="arquivo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tipos_veiculo">
           <Key>
@@ -145,6 +146,7 @@
           <EntitySetMapping Name="fotos_veiculo">
             <EntityTypeMapping TypeName="VeiculosDBModel.fotos_veiculo">
               <MappingFragment StoreEntitySet="fotos_veiculo">
+                <ScalarProperty Name="arquivo" ColumnName="arquivo" />
                 <ScalarProperty Name="id_foto" ColumnName="id_foto" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="id_veiculo" ColumnName="id_veiculo" />

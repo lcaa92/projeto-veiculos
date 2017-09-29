@@ -7,10 +7,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Novo Veículo", "Adicionar")
+    <a href="@Url.Action("adicionar", "home")" class="btn btn-success">
+        Adicionar Veiculo
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </a>
+    <!--@Html.ActionLink("Novo Veículo", "Adicionar")-->
 </p>
 <div id="status"></div>
-<table>
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.id_veiculo)
@@ -22,7 +26,7 @@
             @Html.DisplayNameFor(model => model.proprietario)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.id_tipo_veiculo)
+           Tipo Veiculo<!-- @Html.DisplayNameFor(model => model.id_tipo_veiculo) -->
         </th>
         <th></th>
     </tr>

@@ -1,0 +1,56 @@
+﻿@model ProjectVeiculos.Models.fotos_veiculo
+
+@{
+    ViewBag.Title = "Adicionar foto";
+}
+
+<h2>Adicionar foto</h2>
+
+@using (Html.BeginForm("add_foto", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <table class="table">
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.id_veiculo, new { @Value = @ViewBag.id })
+                @Html.ValidationMessageFor(model => model.id_veiculo)
+            </div>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.nome)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.nome)
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.arquivo)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        <!--@Html.EditorFor(model => model.arquivo)-->
+                        <input type="file" name="arquivo" id="arquivo" />
+                        @Html.ValidationMessageFor(model => model.arquivo)
+                    </div>
+                </td>
+            </tr>
+            <p>
+                <input type="submit" value="Create" class="btn btn-default" />
+            </p>
+        </table>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Voltar", "visualizar", new { id = @ViewBag.id })
+    
+</div>

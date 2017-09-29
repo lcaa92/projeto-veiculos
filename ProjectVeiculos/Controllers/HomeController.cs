@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.Entity;
 using ProjectVeiculos.Models;
+using System.IO;
 
 namespace ProjectVeiculos.Controllers
 {
@@ -15,9 +16,10 @@ namespace ProjectVeiculos.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(string mensagem)
         {
             var veiculos = db.veiculos.Include("tipos_veiculo").ToList();
+            @ViewBag.messagem = mensagem;
             return View(veiculos);
         }
 
@@ -81,6 +83,46 @@ namespace ProjectVeiculos.Controllers
         {
             veiculos veiculo = db.veiculos.Find(id);
             return View(veiculo);
+        }
+
+        public ActionResult add_foto(long id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult add_foto(fotos_veiculo foto)
+        {
+            if (Request.Files.Count == 0)
+            {
+                return RedirectToAction("index");
+            }
+            if (ModelState.IsValid)
+            {
+                
+
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
+                        file.SaveAs(path);
+                        foto.arquivo = fileName;
+                        db.fotos_veiculo.Add(foto);
+                        db.SaveChanges();
+                    }
+
+                    
+                }
+                
+                return RedirectToAction("index");
+            }
+            @ViewBag.id = foto.id_veiculo;
+            return View(foto);
         }
     }
 }

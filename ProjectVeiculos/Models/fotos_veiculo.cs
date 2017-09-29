@@ -17,6 +17,7 @@ namespace ProjectVeiculos.Models
         public long id_foto { get; set; }
         public string nome { get; set; }
         public long id_veiculo { get; set; }
+        public string arquivo { get; set; }
     
         public virtual veiculos veiculos { get; set; }
     }
